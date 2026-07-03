@@ -126,6 +126,14 @@ const books = [
 const app = document.querySelector("#app");
 const progressBar = document.querySelector("#progressBar");
 
+function mobileImage(src) {
+  return src.replace(/\.jpg$/, "-mobile.jpg");
+}
+
+function imageAttrs(src) {
+  return `src="${src}" srcset="${mobileImage(src)} 800w, ${src} 1200w" sizes="(max-width: 760px) calc(100vw - 28px), 840px"`;
+}
+
 function renderHome() {
   document.title = "童话夜读";
   app.innerHTML = `
@@ -139,7 +147,7 @@ function renderHome() {
         .map(
           (book) => `
             <a class="book-card" href="#/${book.slug}">
-              <img src="${book.hero}" alt="${book.title}插画" loading="lazy" />
+              <img ${imageAttrs(book.hero)} alt="${book.title}插画" loading="lazy" decoding="async" />
               <div class="book-card-body">
                 <div class="meta-row">
                   <span class="pill">${book.status}</span>
@@ -168,7 +176,7 @@ function renderBook(book) {
         <a class="nav-link" href="#/${book.slug}/copyright">版权说明</a>
       </nav>
       <header class="hero">
-        <img src="${book.hero}" alt="${book.title}主插画" />
+        <img ${imageAttrs(book.hero)} alt="${book.title}主插画" decoding="async" />
         <div class="meta-row">
           <span class="pill">${book.status}</span>
           <span class="pill">${book.author}</span>
@@ -191,7 +199,7 @@ function renderBook(book) {
         .map((chapter, index) => {
           const figure = book.images[index]
             ? `<figure class="story-figure">
-                <img src="${book.images[index].src}" alt="${book.images[index].caption}" loading="lazy" />
+                <img ${imageAttrs(book.images[index].src)} alt="${book.images[index].caption}" loading="lazy" decoding="async" />
                 <figcaption>${book.images[index].caption}</figcaption>
               </figure>`
             : "";
