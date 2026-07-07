@@ -119,6 +119,12 @@ h1 {
   background: var(--panel-strong);
 }
 
+.book-card picture,
+.hero picture,
+.story-figure picture {
+  display: block;
+}
+
 .book-card img {
   display: block;
   width: 100%;
@@ -264,8 +270,29 @@ h1 {
   margin-bottom: 1.15em;
   color: var(--text);
   font-size: clamp(1.06rem, 2.2vw, 1.2rem);
-  line-height: 2.05;
+  line-height: 2.45;
   text-align: justify;
+}
+
+.ruby-text ruby {
+  ruby-position: over;
+}
+
+.ruby-text rt {
+  color: rgba(185, 177, 167, 0.56);
+  font-family: system-ui, sans-serif;
+  font-size: 0.48em;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0;
+  user-select: none;
+}
+
+.signature {
+  margin: 42px 0 0;
+  color: var(--muted);
+  font: 1rem/1.8 system-ui, sans-serif;
+  text-align: right;
 }
 
 .story-figure {
